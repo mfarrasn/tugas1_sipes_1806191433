@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Detail Pesawat</title>
+</head>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container justify-content-center" >
+    <div class="row-cols-sm-1" align="center">
+        <h3>Detail Pesawat</h3>
+    </div>
+    <div class="row-cols-sm-2" align="center">
+        <div class="row" align="left">
+            <div class="col justify-content-center">
+                <p class="font-weight-bold">Nomor Seri Pesawat</p>
+                <p class="font-weight-bold">Jenis Pesawat</p>
+                <p class="font-weight-bold">Nama Tipe Pesawat</p>
+                <p class="font-weight-bold">Maskapai </p>
+                <p class="font-weight-bold">Tempat Dibuat </p>
+                <p class="font-weight-bold">Tanggal Dibuat</p>
+            </div>
+            <div class="col justify-content-center">
+                <p th:text="${pesawat.nomor_seri}"></p>
+                <p th:text="${pesawat.jenis_pesawat}"></p>
+                <p th:text="${pesawat.tipe.namatipe}"></p>
+                <p th:text="${pesawat.maskapai}"></p>
+                <p th:text="${pesawat.tempat_dibuat}"></p>
+                <p th:text="${tanggal_pesawat}"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Detail Pesawat</title>
+</head>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container justify-content-center" >
+    <div class="row-cols-sm-1" align="center">
+        <h3>Detail Pesawat</h3>
+    </div>
+    <div class="row-cols-sm-2" align="center">
+        <div class="row" align="left">
+            <div class="col justify-content-center">
+                <p class="font-weight-bold">Nomor Seri Pesawat</p>
+                <p class="font-weight-bold">Jenis Pesawat</p>
+                <p class="font-weight-bold">Nama Tipe Pesawat</p>
+                <p class="font-weight-bold">Maskapai </p>
+                <p class="font-weight-bold">Tempat Dibuat </p>
+                <p class="font-weight-bold">Tanggal Dibuat</p>
+            </div>
+            <div class="col justify-content-center">
+                <p th:text="${pesawat.nomor_seri}"></p>
+                <p th:text="${pesawat.jenis_pesawat}"></p>
+                <p th:text="${pesawat.tipe.namatipe}"></p>
+                <p th:text="${pesawat.maskapai}"></p>
+                <p th:text="${pesawat.tempat_dibuat}"></p>
+                <p th:text="${tanggal_pesawat}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row-cols-sm-3">
+        <div class="row">
+            <h5>Daftar Penerbangan</h5>
+        </div>
+        <form th:action="@{'/pesawat/' + ${pesawat.id} + '/tambah-penerbangan'}" th:object="${pesawat}" method="POST">
+            <input type="hidden" th:field="${pesawat.id}">
+            <h5 class="text-right">Tambah Penerbangan </h5>
+            <div class="row">
+                <div class="col-8"></div>
+                <div class="col-2 text-right">
+                    <div class="form-group">
+                        <select type="text"  th:field="${pesawat.listPenerbangan}" name="all_penerbangan">
+<!--                            <option value="" disabled selected>Pilih penerbangan</option>-->
+                            <div th:each="penerbangan, iterationStatus : ${all_penerbangan}">
+                                <option th:value="${penerbangan.id}" th:text="${penerbangan.nomor_penerbangan}"></option>
+                            </div>
+                        </select>
+                    </div>
+                </div>
+                <div class="col text-right">
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kode Penerbangan</th>
+                        <th>Bandara Asal</th>
+                        <th>Bandara Tujuan</th>
+                        <th>Waktu Berangkat</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="penerbangan, iterationStatus : ${listPenerbangan}">
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="${penerbangan.nomor_penerbangan}"></td>
+                        <td th:text="${penerbangan.kode_bandara_asal}"></td>
+                        <td th:text="${penerbangan.kode_bandara_tujuan}"></td>
+                        <td th:text="${penerbangan.waktu_berangkat}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

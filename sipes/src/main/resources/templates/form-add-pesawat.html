@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Pesawat</title>
+</head>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div clas="container">
+    <h3 clas="text-center" >Form Tambah Pesawat</h3>
+    <form th:action="@{/pesawat/tambah}"th:object="${pesawat}" method = "POST">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" > Maskapai</label>
+            <div class="col-sm-8">
+                <input type="text" name="maskapai" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" >Tanggal Dibuat</label>
+            <div class="col-sm-8">
+                <input type="date" name="tanggal_dibuat" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" >Tempat Dibuat</label>
+            <div class="col-sm-8">
+                <input type="text" name="tempat_dibuat" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" >Jenis</label>
+            <div class="col-sm-8">
+                <select class="form-control" name="jenis_pesawat" type="text">
+                    <option>Komersial</option>
+                    <option>Militer</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label" >Tipe</label>
+            <div class="col-sm-8">
+                <select class="form-control" name="tipe">
+                    <div th:each="tipe, iterationStatus : ${listTipe}">
+                        <option th:value="${tipe.id}" th:text="${tipe.nama}"></option>
+                    </div>
+                </select>
+            </div>
+        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Teknisi</label>
+                    <div>
+                        <select class="form-control" >
+                            <div th:each="teknisi, iterationStatus : ${listTeknisi}">
+                                <option th:value="${teknisi.id}" th:text="${teknisi.nama}"></option>
+                            </div>
+                        </select>
+                    </div>
+                </div>
+        <div class="row">
+            <div class="col text-right">
+                <button type="reset" class="btn btn-secondary" >Batal</button>
+            </div>
+            <div class="col text-left">
+                <button type="submit" name="submit" class="btn btn-primary" >Simpan</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Pesawat</title>
+</head>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<h2>Daftar Pesawat Tua</h2>
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>NomorSeri</th>
+            <th>Jenis</th>
+            <th>Tipe </th>
+            <th>Usia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pesawat, iterationStatus : ${listPesawatTua}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${pesawat.nomor_seri}"></td>
+            <td th:text="${pesawat.jenis_pesawat}"></td>
+            <td th:text="${pesawat.tipe.namatipe}"></td>
+            <td th:text="${listUmur[iterationStatus.index]}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+</body>
+</html>
